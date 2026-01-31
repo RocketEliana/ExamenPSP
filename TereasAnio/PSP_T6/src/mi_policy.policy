@@ -1,0 +1,7 @@
+/* AUTOMATICALLY GENERATED ON Wed Nov 26 12:55:57 CET 2025*/
+/* DO NOT EDIT */
+
+grant codeBase "file:/C:/Users/User/Documents/NetBeansProjectse/PSP_T6/src/Tarea6.jar" {
+  permission java.io.FilePermission "C:/datos/-", "read";
+};
+

@@ -1,0 +1,32 @@
+PATRON MULTI
+public class ServidorMultihilo extends Thread {
+    private Socket socket;
+
+    // El constructor recibe el socket individual
+    public ServidorMultihilo(Socket s) {
+        this.socket = s;
+    }
+
+    @Override
+    public void run() {
+        // La lógica de comunicación va AQUÍ
+        try (DataInputStream dis = new DataInputStream(socket.getInputStream());
+             DataOutputStream dos = new DataOutputStream(socket.getOutputStream())) {
+            
+            dos.writeUTF("Bienvenido al servidor multihilo");
+            // ... lógica independiente ...
+            
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+
+    public static void main(String[] args) {
+        try (ServerSocket ss = new ServerSocket(1250)) {
+            while (true) {
+                Socket cliente = ss.accept(); // Acepta conexión
+                // Crea e inicia un hilo nuevo para ese cliente
+                new ServidorMultihilo(cliente).start(); 
+            }
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+}
+_____________________________________________________________________

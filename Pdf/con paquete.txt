@@ -1,0 +1,34 @@
+con paquete
+cd C:\Users\User\Documents\NetBeansProjects\PracticasPlataforma\src
+javac P1/Lenguaje.java
+Para ejecutar:
+
+bash
+cd C:\Users\User\Documents\NetBeansProjects\PracticasPlataforma
+java -cp src P1.Lenguaje 40 miFicheroDeLenguaje.txt
+
+_____________________________________________________________________________
+
+Sin paquete
+Paso 3: Compilar desde src
+bash
+cd C:\Users\User\Documents\NetBeansProjects\PracticasPlataforma\src
+javac Lenguaje.java
+Paso 4: Ejecutar directamente
+bash
+java Lenguaje 40 miFicheroDeLenguaje.txt
+______________________________________________
+El problema al ejecutar desde src:
+Cuando ejecutas java P1.Lenguaje desde src:
+
+Java busca: ./P1/Lenguaje.class
+
+Pero tu archivo está en: ./P1/Lenguaje.class ← ¡Sí está ahí!
+
+¿Entonces por qué falla? Porque Java interpreta P1.Lenguaje como:
+
+Paquete: P1
+
+Clase: Lenguaje
+
+Ubicación esperada: P1/Lenguaje.class relativo al classpath
