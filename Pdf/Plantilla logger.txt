@@ -1,0 +1,38 @@
+Plantilla logger
+import java.io.IOException;
+import java.util.logging.*;
+
+public class LoggerExamenCompleto {
+    private static final Logger logger = Logger.getLogger("MiApp");
+
+    public static void main(String[] args) {
+        FileHandler fh = null;
+
+        try {
+            fh = new FileHandler("registro.log", true);
+            fh.setFormatter(new SimpleFormatter());
+            logger.addHandler(fh);
+
+            // --- SELECCIÓN DE NIVELES ---
+            // 1. Nivel del Logger: Define qué mensajes "deja pasar" el objeto logger.
+            logger.setLevel(Level.ALL); 
+
+            // 2. Nivel del Handler: Define qué mensajes se escriben realmente en el ARCHIVO.
+            fh.setLevel(Level.ALL); 
+            
+            // 3. (Opcional) Si quieres silenciar la consola pero mantener el archivo:
+            logger.setUseParentHandlers(false);
+
+            // Pruebas de niveles (de menor a mayor importancia)
+            logger.finest("Trazado muy detallado"); 
+            logger.info("Información general del sistema");
+            logger.warning("Cuidado, algo no va del todo bien");
+            logger.severe("ERROR CRÍTICO");
+
+        } catch (IOException e) {
+            System.err.println("Error de E/S: " + e.getMessage());
+        } finally {
+            if (fh != null) fh.close();
+        }
+    }
+}
