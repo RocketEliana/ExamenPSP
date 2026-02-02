@@ -33,7 +33,7 @@ public class Lenguaje {
         BufferedWriter bw = null;
 
         try {
-            bw = new BufferedWriter(new FileWriter(nombreFichero));
+            bw = new BufferedWriter(new FileWriter(nombreFichero, true));
 
             // Para CADA conjunto (línea)
             for (int k = 0; k < numeroConjuntos; k++) {

@@ -1,0 +1,5 @@
+C:\Users\User\Documents\NetBeansProjects\PracticasPlataforma\src>javac -encoding UTF-8 P1/*.java
+Note: P1\Aleatorios.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+C:\Users\User\Documents\NetBeansProjects\PracticasPlataforma\src>java -cp . P1.Aleatorios | java -cp . P1.OrdenarNumeros

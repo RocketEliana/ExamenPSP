@@ -1,0 +1,22 @@
+BLOQUE 1: El caos de los Paquetes y la Terminal
+Si te sale el error: "No se pudo encontrar o cargar la clase principal".
+
+Opción A (Con Paquetes):
+
+Sitúate en la carpeta src.
+
+Compila: javac -d . paquete/Clase.java
+
+Ejecuta: java paquete.Clase
+
+Opción B (Sin Paquetes - El "Salvavidas"):
+
+Borra la línea package ...; de tu código.
+
+Entra en la carpeta donde está el archivo.
+
+Compila: javac Clase.java
+
+Ejecuta: java Clase
+
+Comando de emergencia: Si estás en la carpeta raíz y no lo pilla: java -cp . paquete.Clase (El -cp . obliga a Java a mirar en la carpeta actual).

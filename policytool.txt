@@ -1,0 +1,41 @@
+policytool
+(Se abrirá una ventana gris de Java).
+
+2. Configurar el Almacén de Claves (Keystore)
+Para que la política reconozca al usuario "Javier", primero debe saber dónde está tu archivo DAM:
+
+Haz clic en el menú Edición -> Editar Almacén de Claves.
+
+En URL de almacén de claves, escribe: file:/C:/Users/User/Documents/NetBeansProjects/Barbero/src/DAM
+
+En Tipo de almacén de claves, escribe: JKS
+
+Pulsa Aceptar.
+
+3. Crear la Regla de Permisos
+Ahora le diremos que "Javier" tiene permiso de lectura:
+
+Pulsa el botón Agregar entrada de política.
+
+En el cuadro Firmado por (SignedBy), escribe: Javier
+
+Pulsa el botón Agregar permiso.
+
+En la lista desplegable de Permiso, busca: FilePermission.
+
+En Nombre del destino (Target Name), escribe: C:\datos\*
+
+En Acciones, selecciona o escribe: read
+
+Pulsa Aceptar y luego Terminar.
+
+4. Guardar el archivo de política
+Ve a Archivo -> Guardar como...
+
+Guárdalo en tu carpeta src con el nombre: mis_permisos.policy
+
+5. Ejecutar con la nueva política
+Ahora tienes que indicarle a Java que use tu archivo de política al arrancar:
+
+DOS
+java -Djava.security.manager -Djava.security.policy=mis_permisos.policy -cp sBarbero.jar barbero.Barbero

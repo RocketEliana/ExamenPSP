@@ -1,0 +1,23 @@
+1. Compilar todo el paquete
+DOS
+javac -encoding UTF-8 barbero/Barbero.java
+2. Crear el JAR (Incluyendo clases internas)
+DOS
+jar cvf Barbero.jar barbero/*.class
+3. Generar las claves (Si ya creaste el archivo DAM, puedes saltar al 4)
+DOS
+keytool -genkey -alias firmar -keypass hola00 -keystore DAM -storepass distancia -keyalg RSA -validity 365
+(Si te dice que ya existe, pasa al siguiente).
+
+4. Firmar el JAR
+DOS
+jarsigner -keystore DAM -storepass distancia -keypass hola00 -signedjar sBarbero.jar Barbero.jar firmar
+5. Exportar el certificado
+DOS
+keytool -export -keystore DAM -storepass distancia -alias firmar -file Javier.cert
+6. Importar el certificado (Si el alias ya existe, fallará, es normal)
+DOS
+keytool -import -alias Javier -file Javier.cert -keystore DAM -storepass distancia
+7. Ejecutar con el Gestor de Seguridad
+DOS
+java -Djava.security.manager -cp sBarbero.jar barbero.Barbero

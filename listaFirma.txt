@@ -1,0 +1,26 @@
+DOS
+javac -encoding UTF-8 barbero/Barbero.java
+2.
+
+DOS
+jar cvf Barbero.jar barbero/Barbero.class
+3.
+
+DOS
+keytool -genkey -alias firmar -keypass hola00 -keystore DAM -storepass distancia -keyalg RSA -validity 365
+4.
+
+DOS
+jarsigner -keystore DAM -storepass distancia -keypass hola00 -signedjar sBarbero.jar Barbero.jar firmar
+5.
+
+DOS
+keytool -export -keystore DAM -storepass distancia -alias firmar -file Javier.cert
+6.
+
+DOS
+keytool -import -alias Javier -file Javier.cert -keystore DAM -storepass distancia
+7.
+
+DOS
+java -Djava.security.manager -cp sBarbero.jar barbero.Barbero

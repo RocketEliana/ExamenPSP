@@ -18,7 +18,8 @@ public class Colaborar {
     Por supuesto, cada proceso seguirá escribiendo su palabra en una línea independiente de las otras.
     Es decir, si lanzamos 10 instancias de "lenguaje", al final, debemos tener en el fichero 10 + 20 + 30 + … + 100 = 550 líneas.*/
     public static void main(String[] args) {
-         String nombreFichero = "gran_fichero.txt";
+         String nombreFichero=  "C:/Users/User/Desktop/mi_gran_fichero.txt";
+
         int numeroInstancias = 10;
         List<Process> procesos = new ArrayList<>();
 
@@ -28,12 +29,18 @@ public class Colaborar {
             int palabrasAGenerar = i * 10; // 10, 20, 30...
             
             // Preparamos el comando: java lenguaje <num> <fichero>
-            ProcessBuilder pb = new ProcessBuilder(
-                "java", 
-                "lenguaje", 
-                String.valueOf(palabrasAGenerar), 
-                nombreFichero
-            );
+         String classpath = System.getProperty("java.class.path");
+
+ProcessBuilder pb = new ProcessBuilder(
+    "java",
+    "-cp",
+    classpath,
+    "P1.Lenguaje",
+    String.valueOf(palabrasAGenerar),
+    nombreFichero
+);
+pb.inheritIO();
+
 
             try {
                 // Lanzamos el proceso y lo añadimos a la lista para controlarlos

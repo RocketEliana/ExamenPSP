@@ -1,0 +1,46 @@
+CHULETA FIRMA DE JAR EN JAVA 11
+1. COMPILAR
+javac GetProps.java
+2. CREAR JAR
+jar cvf GetProps.jar GetProps.class
+3. CREAR KEYSTORE Y CLAVES
+keytool -genkeypair -alias firmar -keypass hola00 -keystore DAM -storepass distancia
+4. FIRMAR JAR
+jarsigner -keystore DAM -signedjar sGetProps.jar GetProps.jar firmar
+5. EXPORTAR CERTIFICADO PUBLICO
+keytool -exportcert -keystore DAM -alias firmar -file Javier.cert
+6. EJECUTAR SIN SECURITY MANAGER
+java -cp sGetProps.jar GetProps
+7. EJECUTAR CON SECURITY MANAGER
+java -Djava.security.manager -cp sGetProps.jar GetProps
+8. IMPORTAR CERTIFICADO EN CLIENTE
+keytool -importcert -alias Javier -file Javier.cert -keystore DAM2
+9. CONFIGURAR POLITICAS
+policytool
+Agregar entrada SignedBy=Javier
+Permisos:- java.util.PropertyPermission user.home read- java.util.PropertyPermission java.home read
+10. EJECUTAR FINAL
+java -Djava.security.manager -cp sGetProps.jar GetProps
+REGLA CLAVE:
+Sin jarsigner NO hay firma.
+keytool solo gestiona certificados
+_____________________________________________________
+CHULETA KEYTOOL + SOCKETS JAVA
+1. COMPILAR CON PAQUETES (UTF-8)
+cd src
+javac -encoding UTF-8 com/datos/*.java com/interfaz/*.java
+2. CREAR JAR
+jar cvf app.jar com/datos/*.class com/interfaz/*.class
+3. CREAR KEYSTORE + CERTIFICADO
+keytool -genkeypair -alias eli -keystore DAM -storepass distancia
+4. VER CONTENIDO KEYSTORE
+keytool -list -keystore DAM -storepass distancia
+5. EXPORTAR CERTIFICADO
+keytool -exportcert -alias eli -keystore DAM -file eli.cer -rfc -storepass distancia
+6. IMPORTAR CERTIFICADO EN OTRO KEYSTORE
+keytool -importcert -alias eli -file eli.cer -keystore DAM2
+7. VERIFICAR KEYSTORE DESTINO
+keytool -list -keystore DAM2
+8. EJECUTAR JAR
+java -jar app.jar
+Notas:- Ejecutar siempre desde la carpeta que contiene el primer package.- Usar siempre UTF-8.- Usar la misma contraseña p
